@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import secrets
+import os
 import dj_database_url
 
 
@@ -137,8 +138,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 MEDIA_URL = 'media/'
-STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
-MEDIA_ROOT = BASE_DIR.joinpath('media')
+STATIC_ROOT = os.path.join('staticfiles')
+MEDIA_ROOT = os.path.join('media')
+# MEDIA_ROOT = BASE_DIR.joinpath('media')
 
 # Email teste console
 
