@@ -30,7 +30,7 @@ SECRET_KEY = secrets.token_hex(32)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['ordnavile-production-a57b.up.railway.app/', ]
+ALLOWED_HOSTS = ['.up.railway.app']
 
 
 # Application definition
