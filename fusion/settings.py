@@ -57,10 +57,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "fusion.urls"
 
+TEMPLATES_DIRS = os.path.join('templates')
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR.joinpath('templates')],
+        "DIRS": [TEMPLATES_DIRS],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
