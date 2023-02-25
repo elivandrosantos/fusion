@@ -78,9 +78,9 @@ WSGI_APPLICATION = "fusion.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": '',
-        'USER': '',
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": 'postgres',
+        'USER': 'elivandro',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432'
@@ -126,6 +126,20 @@ STATIC_URL = "static/"
 MEDIA_URL = 'media/'
 STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
 MEDIA_ROOT = BASE_DIR.joinpath('media')
+
+# Email teste console
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Endereço eletrônico produção
+
+# EMAIL_HOST = 'localhost'
+# EMAIL_HOST_USER = 'no-reply@fusion.com.br'
+# EMAIL_PORT = 587
+# EMAIL_USE_TSL = True
+# EMAIL_HOST_PASSWORD = 'fusion'
+# DEFAULT_FROM_EMAIL = 'contato@fusion.com.br'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
