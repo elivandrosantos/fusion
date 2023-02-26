@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 import dotenv
 from pathlib import Path
-from decouple import config, Csv
+from decouple import config
 
 dotenv.load_dotenv(dotenv.find_dotenv())
 
@@ -26,7 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+# SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
@@ -146,7 +148,7 @@ MEDIA_ROOT = os.path.join('media')
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Endereço eletrônico produção
+# Endereço produção
 
 # EMAIL_HOST = 'localhost'
 # EMAIL_HOST_USER = 'no-reply@fusion.com.br'
