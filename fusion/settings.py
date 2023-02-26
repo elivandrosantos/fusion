@@ -12,14 +12,13 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 import dotenv
+import secrets
 from pathlib import Path
-
 
 dotenv.load_dotenv(dotenv.find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -28,15 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECRET_KEY = os.getenv('SECRET_KEY')
 
-SECRET_KEY = 'django-insecure-z6(@*s&#+w!$vig@!!eup28vxf9)2)y3(5)ie5%aafbb3o-8!1'
-
+SECRET_KEY = secrets.token_hex(52)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.getenv('DEBUG')
 DEBUG = False
 
 ALLOWED_HOSTS = ['.up.railway.app']
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -79,7 +76,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "fusion.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -135,7 +131,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -146,7 +141,6 @@ TIME_ZONE = "America/Sao_Paulo"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -176,3 +170,6 @@ MEDIA_ROOT = os.path.join('media')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGOUT_REDIRECT_URL = 'index'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# CSRF_TRUSTED_ORIGINS = ['http://*.127.0.0.1']
+# X_FRAME_OPTIONS = 'ALLOWALL'
