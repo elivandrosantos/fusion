@@ -10,10 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from decouple import Csv, config
-from pathlib import Path
 import os
-from dj_database_url import parse as dburl
+from pathlib import Path
+from decouple import config, Csv
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,10 +28,10 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['.up.railway.app']
-# ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
+# ALLOWED_HOSTS = ['.up.railway.app']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 
 
 # Application definition
@@ -94,14 +93,24 @@ DATABASES = {
 }
 """
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'HfKk8A8oo8ep96cC6jQb',
+#         'HOST': 'containers-us-west-97.railway.app',
+#         'PORT': '5826'
+#     }
+# }
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'HfKk8A8oo8ep96cC6jQb',
-        'HOST': 'containers-us-west-97.railway.app',
-        'PORT': '5826'
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('POSTGRES_DB', 'railway'),
+        'USER': config('POSTGRES_USER', 'postgres'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('DB_HOST', 'containers-us-west-97.railway.app'),
+        'PORT': '5826',
     }
 }
 
