@@ -31,7 +31,8 @@ SECRET_KEY = 'django-insecure-z6(@*s&#+w!$vig@!!eup28vxf9)2)y3(5)ie5%aafbb3o-8!1
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+# DEBUG = os.getenv('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = ['.up.railway.app']
 
@@ -93,13 +94,24 @@ WSGI_APPLICATION = "fusion.wsgi.application"
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('POSTGRES_DB'),
+#         'USER': os.getenv('POSTGRES_USER'),
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+#         'HOST': os.getenv('DB_HOST'),
+#         'PORT': '5826',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'HfKk8A8oo8ep96cC6jQb',
+        'HOST': 'containers-us-west-97.railway.app',
         'PORT': '5826',
     }
 }
