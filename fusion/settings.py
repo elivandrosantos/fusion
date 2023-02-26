@@ -14,6 +14,7 @@ import os
 import dotenv
 import secrets
 from pathlib import Path
+from decouple import config, Csv
 
 dotenv.load_dotenv(dotenv.find_dotenv())
 
@@ -24,16 +25,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
-# SECRET_KEY = os.getenv('SECRET_KEY')
-
-SECRET_KEY = secrets.token_hex(52)
+SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = secrets.token_hex(52)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.getenv('DEBUG')
-DEBUG = False
+# DEBUG = True
+config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['.up.railway.app']
+# ALLOWED_HOSTS = ['.up.railway.app']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -91,27 +93,27 @@ WSGI_APPLICATION = "fusion.wsgi.application"
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('POSTGRES_DB'),
-#         'USER': os.getenv('POSTGRES_USER'),
-#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-#         'HOST': os.getenv('DB_HOST'),
-#         'PORT': '5826',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'HfKk8A8oo8ep96cC6jQb',
-        'HOST': 'containers-us-west-97.railway.app',
+        'NAME': config('POSTGRES_DB', 'postgres'),
+        'USER': config('POSTGRES_USER', 'postgres'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('DB_HOST', 'localhost'),
         'PORT': '5826',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'HfKk8A8oo8ep96cC6jQb',
+#         'HOST': 'containers-us-west-97.railway.app',
+#         'PORT': '5826',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
